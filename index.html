@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>URYLEO Optimizer — Otimização, Produtividade e Desempenho</title>
+
+    <!-- LOGO NA ABA DO NAVEGADOR (FAVICON) -->
+    <link rel="icon" type="image/jpeg" href="https://i.pinimg.com/736x/b1/c3/4d/b1c34defa261e20328ed345606496ae0.jpg" />
+    <link rel="shortcut icon" type="image/jpeg" href="https://i.pinimg.com/736x/b1/c3/4d/b1c34defa261e20328ed345606496ae0.jpg" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --bg-main: #050712;
+            --bg-alt: #0b0f1f;
+            --bg-soft: #121729;
+            --accent: #4aa8ff;
+            --accent-soft: rgba(74, 168, 255, 0.18);
+            --accent-strong: #73d0ff;
+            --text-main: #f5f7ff;
+            --text-muted: #a0a7c0;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --shadow-soft: 0 22px 55px rgba(0, 0, 0, 0.75);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --transition-fast: 0.18s ease-out;
+            --transition-med: 0.28s ease-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #141b33 0, #050712 52%, #02030a 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+
+            /* BLOQUEAR SELEÇÃO DE TEXTO */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+
+            /* Impedir arrastar e selecionar imagens */
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header / Navegação */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: linear-gradient(to bottom,
+                    rgba(5, 7, 18, 0.96) 0%,
+                    rgba(5, 7, 18, 0.94) 40%,
+                    rgba(5, 7, 18, 0.78) 100%);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1.1rem 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* LOGO DO SITE (imagem redonda) */
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            flex-shrink: 0;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .brand-text-main {
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+        }
+
+        .brand-text-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .nav-links a {
+            padding: 0.35rem 0.4rem;
+            border-radius: 999px;
+            transition: color var(--transition-fast),
+                background-color var(--transition-fast),
+                transform var(--transition-fast);
+            white-space: nowrap; /* manter tudo em uma linha */
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-strong);
+            background-color: rgba(74, 168, 255, 0.06);
+            transform: translateY(-1px);
+        }
+
+        /* LINK ATIVO (SEÇÃO ATUAL) */
+        .nav-links a.active {
+            color: var(--accent-strong);
+            background-color: rgba(74, 168, 255, 0.18);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(74, 168, 255, 0.4);
+            background: linear-gradient(135deg, rgba(74, 168, 255, 0.16), rgba(53, 97, 193, 0.12));
+            color: var(--accent-strong);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
+            white-space: nowrap; /* manter o texto reto */
+        }
+
+        .nav-cta span {
+            font-size: 1rem;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: rgba(10, 15, 28, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            padding: 0 7px;
+        }
+
+        .nav-toggle span {
+            height: 2px;
+            background: #ffffff;
+            border-radius: 999px;
+            transition: transform var(--transition-med),
+                opacity var(--transition-fast);
+        }
+
+        .nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(3.5px) rotate(45deg);
+        }
+
+        .nav-open .nav-toggle span:nth-child(2) {
+            transform: translateY(-3.5px) rotate(-45deg);
+        }
+
+        .nav-open .nav-toggle span:nth-child(3) {
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                inset: 56px 1.5rem auto 1.5rem;
+                border-radius: 16px;
+                background: radial-gradient(circle at top left, #202a46 0, #050712 60%);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                box-shadow: var(--shadow-soft);
+                padding: 0.9rem 1.1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                transform-origin: top;
+                transform: scaleY(0.9);
+                opacity: 0;
+                pointer-events: none;
+                gap: 0.4rem;
+            }
+
+            .nav-open .nav-links {
+                opacity: 1;
+                pointer-events: auto;
+                transform: scaleY(1);
+                transition: opacity 0.25s ease-out, transform 0.2s ease-out;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 3.3rem 0 3.8rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4.2rem 0 4.6rem;
+            }
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr);
+            gap: 2.4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 880px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+            }
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            background: radial-gradient(circle at left, rgba(115, 208, 255, 0.35), rgba(17, 24, 48, 0.95));
+            border: 1px solid rgba(115, 208, 255, 0.6);
+            color: #e7f6ff;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #7dffb3;
+            box-shadow: 0 0 0 4px rgba(125, 255, 179, 0.22);
+        }
+
+        .hero-title {
+            font-size: clamp(2.25rem, 3vw + 1.4rem, 3.1rem);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, #7dd3ff, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 32rem;
+            margin-bottom: 1.35rem;
+        }
+
+        .hero-subtitle strong {
+            color: #e4e8ff;
+            font-weight: 600;
+        }
+
+        .hero-platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.7rem;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.18rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(9, 13, 30, 0.9);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        .chip-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.45rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.68rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transition-med),
+                border-color var(--transition-med),
+                transform var(--transition-med),
+                box-shadow var(--transition-med);
+            background: none;
+            color: var(--text-main);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4aa8ff, #8ad9ff);
+            color: #02030a;
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 14px 35px rgba(58, 141, 240, 0.65);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 18px 45px rgba(58, 141, 240, 0.75);
+        }
+
+        .btn-ghost {
+            border-color: rgba(255, 255, 255, 0.16);
+            background: rgba(9, 13, 30, 0.9);
+            color: var(--text-main);
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-1px);
+            background: rgba(12, 18, 40, 0.98);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-icon {
+            font-size: 1.05rem;
+        }
+
+        .hero-note {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            max-width: 26rem;
+        }
+
+        .hero-note span {
+            color: var(--accent-strong);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 220px;
+        }
+
+        .hero-card {
+            position: relative;
+            background: radial-gradient(circle at top left, rgba(138, 217, 255, 0.12), #080b1a 55%, #050814 100%);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.3rem 1.35rem;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: conic-gradient(from 200deg, rgba(74, 168, 255, 0.3), transparent, rgba(74, 168, 255, 0.16), transparent 70%);
+            opacity: 0.3;
+            filter: blur(18px);
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #c5d2ff;
+        }
+
+        .hero-card-badge {
+            font-size: 0.68rem;
+            padding: 0.16rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(19, 236, 166, 0.16);
+            color: #8df6d0;
+            border: 1px solid rgba(141, 246, 208, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .metric {
+            background: rgba(5, 9, 24, 0.95);
+            border-radius: var(--radius-md);
+            padding: 0.6rem 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .metric-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .metric-tag {
+            font-size: 0.7rem;
+            color: var(--accent-strong);
+        }
+
+        .hero-progress {
+            position: relative;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-progress-bar {
+            position: relative;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(14, 19, 36, 0.95);
+            overflow: hidden;
+        }
+
+        .hero-progress-bar-fill {
+            position: absolute;
+            inset: 0;
+            width: 72%;
+            background: linear-gradient(90deg, #4aa8ff, #8ad9ff);
+            box-shadow: 0 0 18px rgba(74, 168, 255, 0.7);
+        }
+
+        .hero-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .hero-footer span {
+            color: #dce3ff;
+        }
+
+        .hero-orbit {
+            position: absolute;
+            inset: -20px;
+            border-radius: 999px;
+            border: 1px dashed rgba(118, 163, 255, 0.26);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .hero-orbit-dot {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--accent);
+            top: 12%;
+            right: 16%;
+            box-shadow: 0 0 12px rgba(74, 168, 255, 0.8);
+        }
+
+        /* Seções genéricas */
+
+        .section {
+            padding: 2.7rem 0;
+        }
+
+        .section-alt {
+            background: radial-gradient(circle at top left, rgba(39, 52, 104, 0.45), #070a16 55%, #050712 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                padding: 3.1rem 0;
+            }
+        }
+
+        .section-header {
+            max-width: 38rem;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .section-kicker {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent-strong);
+            margin-bottom: 0.4rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Sobre */
+
+        .about-grid {
+            display: grid;
+            gap: 1.7rem;
+        }
+
+        @media (min-width: 840px) {
+            .about-grid {
+                grid-template-columns: 1.6fr 1.1fr;
+            }
+        }
+
+        .card {
+            background: rgba(7, 10, 25, 0.96);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            padding: 1.4rem 1.4rem;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-med),
+                box-shadow var(--transition-med),
+                border-color var(--transition-med),
+                background var(--transition-med);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+            border-color: rgba(74, 168, 255, 0.5);
+            background: radial-gradient(circle at top, rgba(61, 113, 255, 0.25), #050712 45%, #050712 100%);
+        }
+
+        .card-label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent-strong);
+            margin-bottom: 0.7rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .card-list {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            list-style: none;
+        }
+
+        .card-list li {
+            display: flex;
+            gap: 0.35rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-list li::before {
+            content: "•";
+            color: var(--accent-strong);
+            margin-top: 1px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+        }
+
+        .pill {
+            font-size: 0.76rem;
+            padding: 0.16rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            background: rgba(5, 9, 22, 0.9);
+        }
+
+        /* O que oferecemos */
+
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .offer-card {
+            background: rgba(6, 9, 23, 0.98);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 1.1rem 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-med),
+                box-shadow var(--transition-med),
+                border-color var(--transition-med),
+                background var(--transition-med);
+        }
+
+        .offer-card::before {
+            content: "";
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(circle at top, rgba(74, 168, 255, 0.22), transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition-med);
+        }
+
+        .offer-card:hover::before {
+            opacity: 1;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(74, 168, 255, 0.55);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.8);
+        }
+
+        .offer-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background: rgba(74, 168, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-strong);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .offer-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Projetos */
+
+        .projects-grid {
+            display: grid;
+            gap: 1.4rem;
+        }
+
+        @media (min-width: 860px) {
+            .projects-grid {
+                grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+                align-items: start;
+            }
+        }
+
+        .project-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .project-meta strong {
+            color: #e4e8ff;
+        }
+
+        /* IA Layout */
+
+        .ia-layout {
+            display: grid;
+            gap: 1.4rem;
+        }
+
+        @media (min-width: 820px) {
+            .ia-layout {
+                grid-template-columns: 1.5fr 1.1fr;
+            }
+        }
+
+        /* Fundadores */
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1.3rem;
+        }
+
+        @media (min-width: 680px) {
+            .founders-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .founder-card {
+            background: rgba(7, 10, 25, 0.95);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            padding: 1.2rem 1.2rem 1.1rem;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .founder-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 20% 0, #ffffff 0, #4aa8ff 40%, #1b264a 72%, #050712 100%);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.75);
+        }
+
+        .founder-name {
+            font-weight: 600;
+        }
+
+        .founder-role {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .founder-body {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+        }
+
+        .founder-socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .social-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.18rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.78rem;
+            color: var(--text-main);
+            background: rgba(5, 9, 24, 0.98);
+            transition: background-color var(--transition-med),
+                color var(--transition-med),
+                transform var(--transition-med),
+                border-color var(--transition-med);
+        }
+
+        .social-chip:hover {
+            background: rgba(74, 168, 255, 0.12);
+            border-color: rgba(74, 168, 255, 0.65);
+            transform: translateY(-1px);
+        }
+
+        .founder-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
+        /* Imagens de redes sociais (sempre redondas) */
+
+        .social-icon-img {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Redes sociais */
+
+        .socials-layout {
+            display: grid;
+            gap: 1.3rem;
+        }
+
+        @media (min-width: 720px) {
+            .socials-layout {
+                grid-template-columns: 1.3fr 1.1fr;
+                align-items: start;
+            }
+        }
+
+        .socials-list {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .socials-list li {
+            margin-bottom: 0.65rem;
+        }
+
+        .socials-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            color: var(--accent-strong);
+            padding-bottom: 1px;
+            transition: color var(--transition-med),
+                transform var(--transition-med);
+        }
+
+        .socials-link:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .socials-link-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .socials-link-icon .social-icon-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rodapé */
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.3rem 0 1.6rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 640px) {
+            .footer-inner {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .footer-highlight {
+            color: var(--accent-strong);
+        }
+
+        /* Scroll reveal */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <!-- LOGO DO SITE USANDO A IMAGEM FORNECIDA -->
+                <div class="brand-logo">
+                    <img src="https://i.pinimg.com/736x/b1/c3/4d/b1c34defa261e20328ed345606496ae0.jpg" alt="Logotipo URYLEO Optimizer">
+                </div>
+                <div>
+                    <div class="brand-text-main">URYLEO Optimizer</div>
+                    <div class="brand-text-sub">Otimização • Produtividade • Desempenho</div>
+                </div>
+            </div>
+            <nav aria-label="Navegação principal">
+                <button class="nav-toggle" aria-label="Alternar menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-links">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#oferecemos">O que oferecemos</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#ia">Inteligência&nbsp;Artificial</a>
+                    <a href="#fundadores">Fundadores</a>
+                    <a href="#redes-sociais">Redes sociais</a>
+                </div>
+            </nav>
+            <a href="#oferecemos" class="nav-cta">
+                Soluções disponíveis
+                <span>↗</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <div class="hero-badge">
+                        <div class="hero-badge-dot"></div>
+                        Projeto institucional • URYLEO Optimizer
+                    </div>
+                    <h1 class="hero-title">
+                        <span>URYLEO Optimizer</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Conjunto de ferramentas, aplicativos e soluções desenvolvidas para
+                        aprimorar <strong>otimização</strong>, <strong>produtividade</strong> e
+                        <strong>desempenho</strong> em diferentes cenários do dia a dia digital —
+                        com foco em utilidade real e responsabilidade técnica.
+                    </p>
+                    <div class="hero-platforms" aria-label="Plataformas atendidas">
+                        <div class="chip">
+                            <span class="chip-dot"></span>
+                            Windows
+                        </div>
+                        <div class="chip">
+                            <span class="chip-dot"></span>
+                            Android
+                        </div>
+                        <div class="chip">
+                            <span class="chip-dot"></span>
+                            iOS
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#sobre" class="btn btn-primary">
+                            Conhecer o projeto
+                            <span class="btn-icon">⟶</span>
+                        </a>
+                        <a href="#ia" class="btn btn-ghost">
+                            Ver nossa IA
+                        </a>
+                    </div>
+                    <p class="hero-note">
+                        Pensado para usuários comuns e avançados, com
+                        <span>transparência</span> e sem promessas irreais.
+                    </p>
+                </div>
+                <div class="hero-visual reveal" aria-hidden="true">
+                    <div class="hero-card">
+                        <div class="hero-card-header">
+                            <div>
+                                <div class="hero-card-title">Painel URYLEO</div>
+                                <div class="hero-card-sub" style="font-size:0.75rem;color:var(--text-muted);">
+                                    Visão geral da saúde digital do usuário
+                                </div>
+                            </div>
+                            <div class="hero-card-badge">
+                                Foco em eficiência
+                            </div>
+                        </div>
+                        <div class="hero-metrics">
+                            <div class="metric">
+                                <div class="metric-label">Otimização sugerida</div>
+                                <div class="metric-value">78%</div>
+                                <div class="metric-tag">Análise de sistema</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Tarefas automatizadas</div>
+                                <div class="metric-value">+32</div>
+                                <div class="metric-tag">Fluxos configurados</div>
+                            </div>
+                        </div>
+                        <div class="hero-progress">
+                            <div class="hero-progress-label">
+                                <span>Produtividade assistida</span>
+                                <span>72%</span>
+                            </div>
+                            <div class="hero-progress-bar">
+                                <div class="hero-progress-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="hero-footer">
+                            <div>Ferramentas gratuitas e opções premium selecionadas.</div>
+                            <div>Sem alterações ocultas no sistema — <span>transparência total.</span></div>
+                        </div>
+                        <div class="hero-orbit">
+                            <div class="hero-orbit-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre o Projeto -->
+        <section id="sobre" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-kicker">Sobre o projeto</div>
+                    <h2 class="section-title">O que é o URYLEO Optimizer</h2>
+                    <p class="section-description">
+                        URYLEO Optimizer é um projeto independente que reúne soluções
+                        pensadas para melhorar a relação das pessoas com seus dispositivos —
+                        sem atalhos duvidosos, com clareza sobre o que cada recurso faz
+                        e respeito total à escolha do usuário.
+                    </p>
+                </div>
+                <div class="about-grid">
+                    <article class="card reveal">
+                        <div class="card-label">Propósito</div>
+                        <h3>Otimização com responsabilidade técnica</h3>
+                        <p>
+                            Mais do que "acelerar tudo", o URYLEO Optimizer busca
+                            oferecer recomendações e ferramentas que tenham impacto
+                            concreto, com base em boas práticas de tecnologia. A prioridade
+                            está em:
+                        </p>
+                        <ul class="card-list">
+                            <li>Clareza sobre o que cada ação faz no sistema;</li>
+                            <li>Evitar alterações irreversíveis ou sem explicação;</li>
+                            <li>Oferecer benefícios reais, mensuráveis pelo usuário;</li>
+                            <li>Documentar comportamentos e limitações das soluções.</li>
+                        </ul>
+                        <div class="pill-row">
+                            <span class="pill">Transparência</span>
+                            <span class="pill">Utilidade real</span>
+                            <span class="pill">Responsabilidade técnica</span>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="card-label">Modelo de uso</div>
+                        <h3>Ferramentas gratuitas e versões premium</h3>
+                        <p>
+                            O projeto oferece recursos gratuitos para necessidades gerais
+                            e opções premium para quem exige funções avançadas, suporte
+                            estendido ou recursos específicos. Em todos os casos:
+                        </p>
+                        <ul class="card-list">
+                            <li>O usuário sabe o que está sendo ativado ou instalado;</li>
+                            <li>Não há promessas exageradas ou garantias irreais;</li>
+                            <li>O foco é sempre produtividade, desempenho e estabilidade.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- O que oferecemos -->
+        <section id="oferecemos" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-kicker">O que oferecemos</div>
+                    <h2 class="section-title">Soluções para otimizar rotina e desempenho</h2>
+                    <p class="section-description">
+                        Os recursos do URYLEO Optimizer são organizados em áreas
+                        que atendem desde quem só quer o básico bem-feito até quem busca
+                        controles mais granulares sobre o sistema.
+                    </p>
+                </div>
+                <div class="offer-grid">
+                    <article class="offer-card reveal">
+                        <div class="offer-icon">⚙</div>
+                        <h3>Otimização de sistemas</h3>
+                        <p>
+                            Ferramentas para organizar processos, reduzir consumo desnecessário,
+                            revisar configurações e sugerir ajustes seguros em Windows,
+                            Android e iOS, sempre explicando o impacto de cada alteração.
+                        </p>
+                    </article>
+                    <article class="offer-card reveal">
+                        <div class="offer-icon">⏱</div>
+                        <h3>Ferramentas de produtividade</h3>
+                        <p>
+                            Recursos pensados para facilitar o dia a dia:
+                            automatização de rotinas comuns, lembretes inteligentes,
+                            organização de tarefas e pequenas utilidades que somam tempo
+                            ao longo da semana.
+                        </p>
+                    </article>
+                    <article class="offer-card reveal">
+                        <div class="offer-icon">🧩</div>
+                        <h3>Utilidades para usuários comuns e avançados</h3>
+                        <p>
+                            Opções simples, com interface direto ao ponto, para quem só quer praticidade —
+                            e controles mais detalhados para usuários avançados, que desejam
+                            entender exatamente o que está em execução e por quê.
+                        </p>
+                    </article>
+                    <article class="offer-card reveal">
+                        <div class="offer-icon">🔍</div>
+                        <h3>Transparência no funcionamento</h3>
+                        <p>
+                            Documentação objetiva sobre o que cada função faz,
+                            quais permissões utiliza e quais são suas limitações.
+                            Nenhuma ação é aplicada sem que o usuário possa compreendê-la
+                            e rever suas escolhas.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos -->
+        <section id="projetos" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-kicker">Projetos</div>
+                    <h2 class="section-title">Ferramentas em desenvolvimento e utilitários</h2>
+                    <p class="section-description">
+                        Alguns projetos do URYLEO Optimizer são disponibilizados como utilitários
+                        diretos, pensados para resolver tarefas específicas de forma transparente,
+                        sem prometer ganhos irreais de desempenho.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="card reveal">
+                        <div class="card-label">Projeto para Windows</div>
+                        <h3>Limpeza Windows — Script .bat</h3>
+                        <p>
+                            Script simples em formato <strong>.bat</strong> voltado para limpeza básica
+                            do Windows. Ele realiza ações pontuais de manutenção, sempre com foco em
+                            liberar espaço e organizar arquivos temporários, sem modificar configurações
+                            críticas do sistema.
+                        </p>
+                        <ul class="card-list">
+                            <li>Apaga arquivos temporários do usuário;</li>
+                            <li>Limpa o cache do Windows Update;</li>
+                            <li>Remove logs do sistema;</li>
+                            <li>Limpa cache de navegador (quando aplicável);</li>
+                            <li>Esvazia a Lixeira.</li>
+                        </ul>
+                        <p class="project-meta" style="margin-top:0.7rem;">
+                            O objetivo principal é <strong>liberar espaço</strong> e corrigir
+                            pequenos comportamentos estranhos, <strong>não</strong> "aumentar
+                            desempenho real" do PC. Usar ocasionalmente é considerado seguro,
+                            mas não substitui manutenção completa, backup ou revisão técnica
+                            mais profunda.
+                        </p>
+                        <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+                            <a class="btn btn-primary" href="https://mega.nz/file/qzJyBBSA#asCfGgJWmLRNIwde-t-59hfHo-iTHxD5nscbtE8q_C8" target="_blank" rel="noopener noreferrer">
+                                Baixar script (.bat)
+                                <span class="btn-icon">⬇</span>
+                            </a>
+                            <span style="font-size:0.8rem;color:var(--text-muted);max-width:18rem;">
+                                Recomenda-se executar apenas se você compreender o que um script .bat faz
+                                e, de preferência, após criar um ponto de restauração do sistema.
+                            </span>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="card-label">Notas importantes</div>
+                        <h3>Transparência sobre o uso do script</h3>
+                        <p>
+                            O projeto "Limpeza Windows" não promete milagres nem
+                            "otimização extrema". Ele é apenas uma forma prática de
+                            centralizar tarefas de limpeza que muitos usuários já
+                            realizam manualmente.
+                        </p>
+                        <ul class="card-list">
+                            <li>Não altera registro do Windows de forma agressiva;</li>
+                            <li>Não instala nem remove programas automaticamente;</li>
+                            <li>Não substitui antivírus ou procedimentos de segurança;</li>
+                            <li>É um complemento simples à manutenção preventiva.</li>
+                        </ul>
+                        <p class="project-meta" style="margin-top:0.7rem;">
+                            Em caso de dúvida, o usuário deve sempre priorizar segurança,
+                            backup de arquivos importantes e, se necessário, apoio técnico
+                            especializado.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inteligência Artificial -->
+        <section id="ia" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-kicker">Inteligência Artificial</div>
+                    <h2 class="section-title">ChatEasy AI — Assistente do ecossistema</h2>
+                    <p class="section-description">
+                        Para complementar as ferramentas do URYLEO Optimizer, o projeto conta com a
+                        <strong>ChatEasy AI</strong>, uma inteligência artificial focada em respostas diretas,
+                        apoio em rotinas digitais e orientação básica sobre tecnologia e produtividade.
+                    </p>
+                </div>
+
+                <div class="ia-layout">
+                    <article class="card reveal">
+                        <div class="card-label">ChatEasy AI</div>
+                        <h3>Suporte conversacional no dia a dia</h3>
+                        <p>
+                            A ChatEasy AI foi pensada para ser um ponto de apoio rápido e acessível,
+                            ajudando em tarefas como esclarecimento de dúvidas simples, organização de ideias
+                            e orientações pontuais sobre uso de recursos digitais. Sempre com linguagem direta
+                            e sem promessas irreais de automação total.
+                        </p>
+                        <ul class="card-list">
+                            <li>Respostas em linguagem natural, com foco em clareza;</li>
+                            <li>Apoio em dúvidas gerais de tecnologia e produtividade;</li>
+                            <li>Auxílio na construção de pequenas rotinas e planejamentos;</li>
+                            <li>Uso complementar às demais ferramentas do URYLEO Optimizer.</li>
+                        </ul>
+                    </article>
+
+                    <article class="card reveal">
+                        <div class="card-label">Acesso</div>
+                        <h3>Experimente a ChatEasy AI</h3>
+                        <p>
+                            A ChatEasy AI está disponível em um ambiente web dedicado. O acesso é feito
+                            diretamente pelo navegador, sem instalação local, e pode ser encerrado a qualquer
+                            momento pelo próprio usuário.
+                        </p>
+                        <ul class="card-list">
+                            <li>Acessível por navegador em computadores e dispositivos móveis;</li>
+                            <li>Interface simples, focada na conversa;</li>
+                            <li>Ideal para consultas pontuais durante o uso das demais soluções.</li>
+                        </ul>
+                        <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+                            <a class="btn btn-primary" href="https://sites.google.com/view/lleozinhobr/chateasy-ai" target="_blank" rel="noopener noreferrer">
+                                Acessar ChatEasy AI
+                                <span class="btn-icon">↗</span>
+                            </a>
+                            <span style="font-size:0.8rem;color:var(--text-muted);">
+                                O link será aberto em uma nova aba do navegador.
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fundadores e Criadores -->
+        <section id="fundadores" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-kicker">Fundadores & Criadores</div>
+                    <h2 class="section-title">Quem está por trás do URYLEO Optimizer</h2>
+                    <p class="section-description">
+                        O projeto nasce da combinação entre interesse profundo por tecnologia,
+                        preocupação com a experiência de uso e o desejo de entregar
+                        soluções honestas, sem excessos de marketing.
+                    </p>
+                </div>
+                <div class="founders-grid">
+                    <article class="founder-card reveal">
+                        <div class="founder-header">
+                            <div class="founder-avatar" aria-hidden="true"></div>
+                            <div>
+                                <div class="founder-name">Leonardo</div>
+                                <div class="founder-role">Fundador &amp; Criador</div>
+                            </div>
+                        </div>
+                        <div class="founder-body">
+                            Leonardo atua na idealização e no desenvolvimento de soluções
+                            práticas dentro do URYLEO Optimizer, conectando tecnologia,
+                            experiência de usuário e comunicação clara. É responsável por
+                            transformar ideias em ferramentas utilizáveis no dia a dia.
+                        </div>
+                        <div class="founder-socials" aria-label="Redes sociais de Leonardo">
+                            <a class="social-chip" href="https://www.instagram.com/leonardo_marcelino456/" target="_blank" rel="noopener noreferrer">
+                                <img class="social-icon-img" src="https://i.pinimg.com/736x/3c/0b/52/3c0b5296e29c391d50a7580b3e949a34.jpg" alt="Instagram" />
+                                <span>@leonardo_marcelino456</span>
+                            </a>
+                            <a class="social-chip" href="https://www.tiktok.com/@leozinolokoofc" target="_blank" rel="noopener noreferrer">
+                                <img class="social-icon-img" src="https://i.pinimg.com/1200x/db/bb/57/dbbb57e4a4dd74be71504cdbac7a3095.jpg" alt="TikTok" />
+                                <span>@leozinolokoofc</span>
+                            </a>
+                            <a class="social-chip" href="https://www.threads.com/@leonardo_marcelino456" target="_blank" rel="noopener noreferrer">
+                                <img class="social-icon-img" src="https://i.pinimg.com/1200x/9f/46/de/9f46dea1ec01fe5b1cca5213cfb4a3b1.jpg" alt="Threads" />
+                                <span>@leonardo_marcelino456</span>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="founder-card reveal">
+                        <div class="founder-header">
+                            <div class="founder-avatar" aria-hidden="true"></div>
+                            <div>
+                                <div class="founder-name">Uryell</div>
+                                <div class="founder-role">Fundador &amp; Criador</div>
+                            </div>
+                        </div>
+                        <div class="founder-body">
+                            Uryell contribui principalmente na parte técnica, modelando a
+                            arquitetura das soluções, definindo critérios de segurança e
+                            estabilidade, e garantindo que cada recurso seja implementado
+                            com foco em confiabilidade e consistência.
+                        </div>
+                        <div class="founder-note">
+                            Observação: <strong>Uryell não utiliza redes sociais</strong>.
+                            Toda comunicação pública oficial do projeto é feita por outros
+                            canais, descritos nesta página.
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Redes Sociais -->
+        <section id="redes-sociais" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="section-kicker">Redes sociais</div>
+                    <h2 class="section-title">Canais de divulgação do projeto</h2>
+                    <p class="section-description">
+                        As redes sociais utilizadas para divulgação e comunicação do
+                        URYLEO Optimizer pertencem ao Leonardo. São utilizadas para
+                        compartilhar atualizações, conteúdos relacionados a tecnologia
+                        e informações sobre as ferramentas do projeto.
+                    </p>
+                </div>
+                <div class="socials-layout">
+                    <article class="card reveal">
+                        <div class="card-label">Diretrizes</div>
+                        <h3>Comunicação simples e direta</h3>
+                        <p>
+                            Nas redes sociais, o foco está em explicar novidades de forma
+                            objetiva, divulgar materiais úteis e registrar a evolução do
+                            projeto. Não são feitos anúncios enganosos, nem promessas de
+                            resultados impossíveis.
+                        </p>
+                        <ul class="card-list">
+                            <li>Atualizações sobre melhorias e novas ferramentas;</li>
+                            <li>Conteúdos sobre organização digital e desempenho;</li>
+                            <li>Links para materiais oficiais do projeto;</li>
+                            <li>Contato público preferencial com a comunidade.</li>
+                        </ul>
+                    </article>
+                    <div class="reveal">
+                        <h3 style="font-size:1rem;margin-bottom:0.6rem;">Redes utilizadas por Leonardo</h3>
+                        <ul class="socials-list">
+                            <li>
+                                <a class="socials-link" href="https://www.instagram.com/leonardo_marcelino456/" target="_blank" rel="noopener noreferrer">
+                                    <span class="socials-link-icon">
+                                        <img class="social-icon-img" src="https://i.pinimg.com/736x/3c/0b/52/3c0b5296e29c391d50a7580b3e949a34.jpg" alt="Instagram" />
+                                    </span>
+                                    <span>Instagram — @leonardo_marcelino456</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="socials-link" href="https://www.tiktok.com/@leozinolokoofc" target="_blank" rel="noopener noreferrer">
+                                    <span class="socials-link-icon">
+                                        <img class="social-icon-img" src="https://i.pinimg.com/1200x/db/bb/57/dbbb57e4a4dd74be71504cdbac7a3095.jpg" alt="TikTok" />
+                                    </span>
+                                    <span>TikTok — @leozinolokoofc</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="socials-link" href="https://www.threads.com/@leonardo_marcelino456" target="_blank" rel="noopener noreferrer">
+                                    <span class="socials-link-icon">
+                                        <img class="social-icon-img" src="https://i.pinimg.com/1200x/9f/46/de/9f46dea1ec01fe5b1cca5213cfb4a3b1.jpg" alt="Threads" />
+                                    </span>
+                                    <span>Threads — @leonardo_marcelino456</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.8rem;">
+                            Lembrete: <strong>as contas acima são pessoais do Leonardo</strong>,
+                            utilizadas também para divulgar o URYLEO Optimizer e seus
+                            desenvolvimentos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container footer-inner">
+            <div>© 2025 <span class="footer-highlight">URYLEO Optimizer</span> — Criado por Uryell &amp; Leonardo</div>
+            <div>Projeto focado em clareza, estabilidade e utilidade prática.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile: abre/fecha navegação em telas menores
+        const navToggle = document.querySelector('.nav-toggle');
+        const body = document.body;
+
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                body.classList.toggle('nav-open');
+            });
+
+            // Fecha o menu ao clicar em um link de navegação
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    body.classList.remove('nav-open');
+                });
+            });
+        }
+
+        // Animação simples de "scroll reveal" para elementos com a classe .reveal
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // DESTACAR LINK ATIVO NO MENU CONFORME A SEÇÃO VISÍVEL
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.4
+        });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // BLOQUEAR BOTÃO DIREITO NAS IMAGENS (menu de contexto)
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Impedir arrastar imagens (abrir/arrastar para outra aba)
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', 'false');
+        });
+    </script>
+</body>
+</html>
