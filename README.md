@@ -12,11 +12,13 @@ Sempre com **linguagem transparente**, sem promessas exageradas e com foco em **
 
 ---
 
-## 🌐 Site institucional
+## Site institucional
 
 Este repositório contém o código do site institucional da URYLEO Optimizer.
 
 - Arquivo principal: `index.html`
+- Versão online (Netlify):  
+  https://uryleo-optimizer-otimiza-o-produtivid.netlify.app
 - Tecnologias utilizadas:
   - HTML5
   - CSS3
