@@ -935,11 +935,12 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .socials-link-icon .social-icon-img {
-            width: 100%;
-            height: 100%;
+        .socials-link-icon img {
+            width: 18px;
+            height: 18px;
         }
 
         /* Rodapé */
@@ -982,9 +983,218 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Modal de download */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 7, 18, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-content {
+            background: radial-gradient(circle at top left, rgba(20, 27, 51, 0.98), #0b0f1f 60%, #050712 100%);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(74, 168, 255, 0.3);
+            padding: 1.8rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4aa8ff, #8ad9ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #02030a;
+            font-weight: bold;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-text {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .modal-download-info {
+            background: rgba(5, 9, 24, 0.9);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 1.2rem;
+        }
+
+        .download-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .download-info-label {
+            color: var(--text-muted);
+        }
+
+        .download-info-value {
+            color: var(--accent-strong);
+            font-weight: 600;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-modal-primary {
+            background: linear-gradient(135deg, #4aa8ff, #8ad9ff);
+            color: #02030a;
+            border: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform var(--transition-med),
+                box-shadow var(--transition-med);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-modal-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(58, 141, 240, 0.7);
+        }
+
+        .btn-modal-secondary {
+            background: rgba(9, 13, 30, 0.9);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            padding: 0.7rem 1.4rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--transition-med),
+                transform var(--transition-med);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-modal-secondary:hover {
+            background: rgba(12, 18, 40, 0.98);
+            transform: translateY(-1px);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(9, 13, 30, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background var(--transition-fast),
+                transform var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            background: rgba(74, 168, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .btn-disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Modal de Download -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar modal">×</button>
+            <div class="modal-header">
+                <div class="modal-icon">↓</div>
+                <h2 class="modal-title">Download URYLEO OPTIMIZER IGUST EDITION</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text">
+                    Você está prestes a baixar a versão <strong>IGUST EDITION</strong> do URYLEO Optimizer. 
+                    Esta é uma versão especial com recursos otimizados para desempenho e estabilidade.
+                </p>
+                <div class="modal-download-info">
+                    <div class="download-info-item">
+                        <span class="download-info-label">Arquivo:</span>
+                        <span class="download-info-value">URYLEO_OPTIMIZER_IGUST_EDITION.zip</span>
+                    </div>
+                    <div class="download-info-item">
+                        <span class="download-info-label">Tamanho:</span>
+                        <span class="download-info-value">~15.7 MB</span>
+                    </div>
+                    <div class="download-info-item">
+                        <span class="download-info-label">Formato:</span>
+                        <span class="download-info-value">Arquivo ZIP</span>
+                    </div>
+                    <div class="download-info-item">
+                        <span class="download-info-label">Plataforma:</span>
+                        <span class="download-info-value">Windows 10/11</span>
+                    </div>
+                </div>
+                <p class="modal-text" style="font-size: 0.85rem;">
+                    <strong>Nota importante:</strong> Execute o antivírus antes de abrir o arquivo. 
+                    Recomenda-se criar um ponto de restauração do sistema antes da instalação.
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button id="startDownload" class="btn-modal-primary">
+                    Iniciar Download
+                </button>
+                <button class="btn-modal-secondary modal-close">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="container nav">
             <div class="brand">
@@ -1056,8 +1266,8 @@
                             Conhecer o projeto
                             <span class="btn-icon">⟶</span>
                         </a>
-                        <a href="#ia" class="btn btn-ghost">
-                            Ver nossa IA
+                        <a href="#projetos" class="btn btn-ghost">
+                            Ver projetos
                         </a>
                     </div>
                     <p class="hero-note">
@@ -1268,25 +1478,34 @@
                         </div>
                     </article>
                     <article class="card reveal">
-                        <div class="card-label">Notas importantes</div>
-                        <h3>Transparência sobre o uso do script</h3>
+                        <div class="card-label">Versão especial</div>
+                        <h3>URYLEO OPTIMIZER IGUST EDITION</h3>
                         <p>
-                            O projeto "Limpeza Windows" não promete milagres nem
-                            "otimização extrema". Ele é apenas uma forma prática de
-                            centralizar tarefas de limpeza que muitos usuários já
-                            realizam manualmente.
+                            Edição especial do URYLEO Optimizer com recursos otimizados para
+                            máxima performance e estabilidade. Inclui ferramentas avançadas de
+                            limpeza, otimização de sistema e utilitários premium em uma única
+                            solução integrada.
                         </p>
                         <ul class="card-list">
-                            <li>Não altera registro do Windows de forma agressiva;</li>
-                            <li>Não instala nem remove programas automaticamente;</li>
-                            <li>Não substitui antivírus ou procedimentos de segurança;</li>
-                            <li>É um complemento simples à manutenção preventiva.</li>
+                            <li>Otimização inteligente de processos do Windows;</li>
+                            <li>Limpeza profunda e segura de arquivos temporários;</li>
+                            <li>Gerenciamento avançado de inicialização do sistema;</li>
+                            <li>Utilitários de produtividade integrados;</li>
+                            <li>Interface otimizada para uso rápido e eficiente.</li>
                         </ul>
                         <p class="project-meta" style="margin-top:0.7rem;">
-                            Em caso de dúvida, o usuário deve sempre priorizar segurança,
-                            backup de arquivos importantes e, se necessário, apoio técnico
-                            especializado.
+                            Esta versão foi desenvolvida com foco em estabilidade e performance,
+                            mantendo a transparência sobre todas as ações realizadas no sistema.
                         </p>
+                        <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+                            <button class="btn btn-primary" id="downloadIgustBtn">
+                                Baixar IGUST EDITION
+                                <span class="btn-icon">⬇</span>
+                            </button>
+                            <span style="font-size:0.8rem;color:var(--text-muted);max-width:18rem;">
+                                Download direto via MEGA. Arquivo ZIP ~15.7 MB para Windows 10/11.
+                            </span>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -1377,19 +1596,9 @@
                             experiência de usuário e comunicação clara. É responsável por
                             transformar ideias em ferramentas utilizáveis no dia a dia.
                         </div>
-                        <div class="founder-socials" aria-label="Redes sociais de Leonardo">
-                            <a class="social-chip" href="https://www.instagram.com/leonardo_marcelino456/" target="_blank" rel="noopener noreferrer">
-                                <img class="social-icon-img" src="https://i.pinimg.com/736x/3c/0b/52/3c0b5296e29c391d50a7580b3e949a34.jpg" alt="Instagram" />
-                                <span>@leonardo_marcelino456</span>
-                            </a>
-                            <a class="social-chip" href="https://www.tiktok.com/@leozinolokoofc" target="_blank" rel="noopener noreferrer">
-                                <img class="social-icon-img" src="https://i.pinimg.com/1200x/db/bb/57/dbbb57e4a4dd74be71504cdbac7a3095.jpg" alt="TikTok" />
-                                <span>@leozinolokoofc</span>
-                            </a>
-                            <a class="social-chip" href="https://www.threads.com/@leonardo_marcelino456" target="_blank" rel="noopener noreferrer">
-                                <img class="social-icon-img" src="https://i.pinimg.com/1200x/9f/46/de/9f46dea1ec01fe5b1cca5213cfb4a3b1.jpg" alt="Threads" />
-                                <span>@leonardo_marcelino456</span>
-                            </a>
+                        <div class="founder-note">
+                            Nota: Leonardo concentra suas redes sociais pessoais em atividades paralelas.
+                            Para conteúdo oficial do projeto, siga os canais oficiais do URYLEO Optimizer.
                         </div>
                     </article>
                     <article class="founder-card reveal">
@@ -1408,8 +1617,8 @@
                         </div>
                         <div class="founder-note">
                             Observação: <strong>Uryell não utiliza redes sociais</strong>.
-                            Toda comunicação pública oficial do projeto é feita por outros
-                            canais, descritos nesta página.
+                            Toda comunicação pública oficial do projeto é feita pelos
+                            canais oficiais do URYLEO Optimizer.
                         </div>
                     </article>
                 </div>
@@ -1421,63 +1630,82 @@
             <div class="container">
                 <div class="section-header reveal">
                     <div class="section-kicker">Redes sociais</div>
-                    <h2 class="section-title">Canais de divulgação do projeto</h2>
+                    <h2 class="section-title">Canais oficiais do projeto</h2>
                     <p class="section-description">
-                        As redes sociais utilizadas para divulgação e comunicação do
-                        URYLEO Optimizer pertencem ao Leonardo. São utilizadas para
-                        compartilhar atualizações, conteúdos relacionados a tecnologia
-                        e informações sobre as ferramentas do projeto.
+                        As redes sociais do URYLEO Optimizer são os canais oficiais para
+                        atualizações, conteúdos relacionados a tecnologia, anúncios de
+                        novas ferramentas e comunicação direta com a comunidade.
                     </p>
                 </div>
                 <div class="socials-layout">
                     <article class="card reveal">
                         <div class="card-label">Diretrizes</div>
-                        <h3>Comunicação simples e direta</h3>
+                        <h3>Comunicação oficial e transparente</h3>
                         <p>
-                            Nas redes sociais, o foco está em explicar novidades de forma
-                            objetiva, divulgar materiais úteis e registrar a evolução do
-                            projeto. Não são feitos anúncios enganosos, nem promessas de
-                            resultados impossíveis.
+                            Nos canais oficiais do URYLEO Optimizer, o foco está em
+                            compartilhar informações precisas sobre as ferramentas,
+                            tutoriais de uso, atualizações de segurança e novidades
+                            do projeto, sempre com transparência e sem exageros.
                         </p>
                         <ul class="card-list">
-                            <li>Atualizações sobre melhorias e novas ferramentas;</li>
-                            <li>Conteúdos sobre organização digital e desempenho;</li>
-                            <li>Links para materiais oficiais do projeto;</li>
-                            <li>Contato público preferencial com a comunidade.</li>
+                            <li>Anúncios oficiais de novas versões e ferramentas;</li>
+                            <li>Tutoriais e guias de uso das soluções;</li>
+                            <li>Atualizações sobre segurança e estabilidade;</li>
+                            <li>Respostas a dúvidas frequentes da comunidade;</li>
+                            <li>Conteúdos educativos sobre otimização e produtividade.</li>
                         </ul>
                     </article>
                     <div class="reveal">
-                        <h3 style="font-size:1rem;margin-bottom:0.6rem;">Redes utilizadas por Leonardo</h3>
+                        <h3 style="font-size:1rem;margin-bottom:0.6rem;">Canais oficiais do URYLEO Optimizer</h3>
                         <ul class="socials-list">
                             <li>
-                                <a class="socials-link" href="https://www.instagram.com/leonardo_marcelino456/" target="_blank" rel="noopener noreferrer">
+                                <a class="socials-link" href="https://www.twitch.tv/uryleo_optimizer" target="_blank" rel="noopener noreferrer">
                                     <span class="socials-link-icon">
-                                        <img class="social-icon-img" src="https://i.pinimg.com/736x/3c/0b/52/3c0b5296e29c391d50a7580b3e949a34.jpg" alt="Instagram" />
+                                        <img class="social-icon-img" src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch" />
                                     </span>
-                                    <span>Instagram — @leonardo_marcelino456</span>
+                                    <span>Twitch — @uryleo_optimizer</span>
                                 </a>
+                                <div style="font-size:0.8rem;color:var(--text-muted);margin-left:2.8rem;margin-top:0.2rem;">
+                                    Lives técnicas, demonstrações e tutoriais ao vivo
+                                </div>
                             </li>
                             <li>
-                                <a class="socials-link" href="https://www.tiktok.com/@leozinolokoofc" target="_blank" rel="noopener noreferrer">
+                                <a class="socials-link" href="https://www.instagram.com/uryleo_optimizer/" target="_blank" rel="noopener noreferrer">
                                     <span class="socials-link-icon">
-                                        <img class="social-icon-img" src="https://i.pinimg.com/1200x/db/bb/57/dbbb57e4a4dd74be71504cdbac7a3095.jpg" alt="TikTok" />
+                                        <img class="social-icon-img" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
                                     </span>
-                                    <span>TikTok — @leozinolokoofc</span>
+                                    <span>Instagram — @uryleo_optimizer</span>
                                 </a>
+                                <div style="font-size:0.8rem;color:var(--text-muted);margin-left:2.8rem;margin-top:0.2rem;">
+                                    Dicas visuais, stories e atualizações rápidas
+                                </div>
                             </li>
                             <li>
-                                <a class="socials-link" href="https://www.threads.com/@leonardo_marcelino456" target="_blank" rel="noopener noreferrer">
+                                <a class="socials-link" href="https://www.tiktok.com/@uryleo_optimizer" target="_blank" rel="noopener noreferrer">
                                     <span class="socials-link-icon">
-                                        <img class="social-icon-img" src="https://i.pinimg.com/1200x/9f/46/de/9f46dea1ec01fe5b1cca5213cfb4a3b1.jpg" alt="Threads" />
+                                        <img class="social-icon-img" src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" />
                                     </span>
-                                    <span>Threads — @leonardo_marcelino456</span>
+                                    <span>TikTok — @uryleo_optimizer</span>
                                 </a>
+                                <div style="font-size:0.8rem;color:var(--text-muted);margin-left:2.8rem;margin-top:0.2rem;">
+                                    Vídeos curtos, dicas rápidas e demonstrações
+                                </div>
+                            </li>
+                            <li>
+                                <a class="socials-link" href="https://www.threads.com/@uryleo_optimizer" target="_blank" rel="noopener noreferrer">
+                                    <span class="socials-link-icon">
+                                        <img class="social-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Threads_%28app%29_logo.svg/240px-Threads_%28app%29_logo.svg.png" alt="Threads" />
+                                    </span>
+                                    <span>Threads — @uryleo_optimizer</span>
+                                </a>
+                                <div style="font-size:0.8rem;color:var(--text-muted);margin-left:2.8rem;margin-top:0.2rem;">
+                                    Discussões técnicas e atualizações em texto
+                                </div>
                             </li>
                         </ul>
                         <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.8rem;">
-                            Lembrete: <strong>as contas acima são pessoais do Leonardo</strong>,
-                            utilizadas também para divulgar o URYLEO Optimizer e seus
-                            desenvolvimentos.
+                            <strong>Importante:</strong> Estes são os canais oficiais do projeto URYLEO Optimizer.
+                            Siga-nos para ficar por dentro de todas as novidades e atualizações.
                         </p>
                     </div>
                 </div>
@@ -1489,7 +1717,7 @@
     <footer>
         <div class="container footer-inner">
             <div>© 2025 <span class="footer-highlight">URYLEO Optimizer</span> — Criado por Uryell &amp; Leonardo</div>
-            <div>Projeto focado em clareza, estabilidade e utilidade prática.</div>
+            <div>Siga-nos nas redes sociais oficiais: @uryleo_optimizer</div>
         </div>
     </footer>
 
@@ -1560,6 +1788,77 @@
         // Impedir arrastar imagens (abrir/arrastar para outra aba)
         document.querySelectorAll('img').forEach(img => {
             img.setAttribute('draggable', 'false');
+        });
+
+        // Sistema de Download para IGUST EDITION
+        const downloadModal = document.getElementById('downloadModal');
+        const downloadIgustBtn = document.getElementById('downloadIgustBtn');
+        const startDownloadBtn = document.getElementById('startDownload');
+        const modalCloseBtns = document.querySelectorAll('.modal-close');
+        const downloadUrl = 'https://mega.nz/file/2ugASKxa#Wo6PEyZOLfVcfxQ_u5z20hh_UzTzf-TN0b58S0RpskY';
+
+        // Abrir modal ao clicar no botão de download
+        downloadIgustBtn.addEventListener('click', () => {
+            downloadModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Fechar modal
+        modalCloseBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                downloadModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Fechar modal ao clicar fora do conteúdo
+        downloadModal.addEventListener('click', (e) => {
+            if (e.target === downloadModal) {
+                downloadModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Iniciar download
+        startDownloadBtn.addEventListener('click', () => {
+            // Desabilitar botão durante o download
+            startDownloadBtn.innerHTML = 'Iniciando download...';
+            startDownloadBtn.classList.add('btn-disabled');
+            
+            // Criar link temporário para download
+            const tempLink = document.createElement('a');
+            tempLink.href = downloadUrl;
+            tempLink.target = '_blank';
+            tempLink.rel = 'noopener noreferrer';
+            
+            // Adicionar ao DOM e clicar
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            
+            // Remover do DOM após clicar
+            setTimeout(() => {
+                document.body.removeChild(tempLink);
+                
+                // Restaurar botão após 2 segundos
+                setTimeout(() => {
+                    startDownloadBtn.innerHTML = 'Iniciar Download';
+                    startDownloadBtn.classList.remove('btn-disabled');
+                    
+                    // Fechar modal após 1.5 segundos
+                    setTimeout(() => {
+                        downloadModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 1500);
+                }, 2000);
+            }, 100);
+        });
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && downloadModal.style.display === 'flex') {
+                downloadModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         });
     </script>
 </body>
